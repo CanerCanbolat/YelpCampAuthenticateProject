@@ -11,9 +11,9 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
+const userRoutes = require("./routes/user.js");
 const campgroundsRoutes = require("./routes/campgrounds.js");
 const reviewsRoutes = require("./routes/reviews.js");
-const userRoutes = require("./routes/user.js");
 
 main().catch((err) => console.log(err));
 
@@ -56,12 +56,6 @@ app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   next();
-});
-
-app.get("/fakeUser", async (req, res) => {
-  const user = new User({ email: "canercanbo@gmail.com", username: "Canbo" });
-  const newUser = await User.register(user, "chicken");
-  res.send(newUser);
 });
 
 app.use("/", userRoutes);

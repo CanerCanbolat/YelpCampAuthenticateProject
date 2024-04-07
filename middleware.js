@@ -1,6 +1,7 @@
 const { campgroundSchema, reviewSchema } = require("./schemas.js");
 const ExpressError = require("./utilities/ExpressError");
 const Campground = require("./models/campground");
+const Review = require("./models/review.js");
 
 module.exports.storeReturnTo = (req, res, next) => {
   if (req.session.returnTo) {
